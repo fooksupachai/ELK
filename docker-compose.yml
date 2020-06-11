@@ -15,8 +15,8 @@ services:
         source: elasticsearch
         target: /usr/share/elasticsearch/data
     ports:
-      - "9201:9201"
-      - "9301:9301"
+      - "9201:9200"
+      - "9301:9300"
     environment:
       ES_JAVA_OPTS: "-Xmx256m -Xms256m"
       ELASTIC_PASSWORD: changeme
@@ -41,9 +41,9 @@ services:
         target: /usr/share/logstash/pipeline
         read_only: true
     ports:
-      - "5001:5001/tcp"
-      - "5001:5001/udp"
-      - "9601:9601"
+      - "5001:5000/tcp"
+      - "5001:5000/udp"
+      - "9601:9600"
     environment:
       LS_JAVA_OPTS: "-Xmx256m -Xms256m"
     networks:
@@ -62,7 +62,7 @@ services:
         target: /usr/share/kibana/config/kibana.yml
         read_only: true
     ports:
-      - "5602:5602"
+      - "5602:5601"
     networks:
       - elk
     depends_on:
